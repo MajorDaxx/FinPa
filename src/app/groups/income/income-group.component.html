@@ -1,0 +1,16 @@
+<form [formGroup]="form" class="row">
+  <mat-form-field appearance="outline" matTooltip="Your take-home pay per month after taxes. Used to gauge saving capacity.">
+    <mat-label>Net monthly income (€)</mat-label>
+    <input matInput type="number" formControlName="netIncome" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" matTooltip="Desired monthly spending in retirement (today’s euros). Sets target income.">
+    <mat-label>Desired pension per month (€)</mat-label>
+    <input matInput type="number" formControlName="pensionNeed" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" matTooltip="Amount you’ve already saved/invested for retirement. Grows until retirement.">
+    <mat-label>Current Savings (€)</mat-label>
+    <input matInput type="number" formControlName="currentSavings" />
+  </mat-form-field>
+</form>

@@ -1,0 +1,11 @@
+<form [formGroup]="form" class="row">
+  <mat-form-field appearance="outline" matTooltip="Rent or mortgage plus utilities per month. You can override our default.">
+    <mat-label>Housing per month (€)</mat-label>
+    <input matInput type="number" formControlName="housing" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" matTooltip="Groceries and dining per month. Adjust if your spending differs from our default.">
+    <mat-label>Food per month (€)</mat-label>
+    <input matInput type="number" formControlName="food" />
+  </mat-form-field>
+</form>

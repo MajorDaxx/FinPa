@@ -1,0 +1,47 @@
+<style>
+  .chart { width: 100%; height: 240px; }
+  svg { width: 100%; height: 100%; overflow: visible; }
+  .axis text { font-size: 10px; fill: var(--mat-sys-on-surface-variant); }
+  .line { fill: none; stroke-width: 2.5; }
+  .savings { stroke: var(--mat-sys-primary); }
+  .target { stroke: var(--mat-sys-secondary); stroke-dasharray: 6 4; }
+  .legend { display: flex; gap: 12px; font-size: 12px; color: var(--mat-sys-on-surface-variant); }
+  .key { display: inline-flex; align-items: center; gap: 6px; }
+  .dot { width: 12px; height: 3px; border-radius: 2px; background: var(--mat-sys-primary); }
+  .dot2 { width: 12px; height: 3px; border-radius: 2px; background: var(--mat-sys-secondary); }
+</style>
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Forecast Overview</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="legend">
+      <span class="key"><span class="dot"></span>Projected savings</span>
+      <span class="key"><span class="dot2"></span>Target at retirement</span>
+    </div>
+    <div class="chart" *ngIf="data() as d">
+      <svg [attr.viewBox]="'0 0 600 240'">
+        <ng-container *ngIf="d.savings.length > 0">
+          <!-- Precompute scales via getters -->
+          <g class="axis">
+            <text x="0" y="230">0y</text>
+            <text x="540" y="230">{{ d.years }}y</text>
+          </g>
+          <!-- Target line -->
+          <line class="line target" x1="0" [attr.y1]="targetY(d.targetCap, d)"
+                x2="600" [attr.y2]="targetY(d.targetCap, d)"></line>
+          <!-- Savings polyline -->
+          <polyline class="line savings"
+            [attr.points]="polylinePoints(d)"></polyline>
+        </ng-container>
+      </svg>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<mat-card style="margin-top:12px;">
+  <mat-card-content>
+    <button mat-stroked-button color="primary" (click)="back()">Back to planner</button>
+  </mat-card-content>
+</mat-card>
